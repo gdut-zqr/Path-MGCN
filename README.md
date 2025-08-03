@@ -30,7 +30,9 @@ The ST datasets and pathway databases are publicly available:
 
 ## Usage
 Example on **DLPFC**:
+Enter the `Path-MGCN` directory and run the DLPFC example:
 ```bash
+cd Path-MGCN
 python Path-MGCN_DLPFC.py
 ```
 
