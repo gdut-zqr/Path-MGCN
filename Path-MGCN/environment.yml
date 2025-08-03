@@ -1,0 +1,24 @@
+name: Path-MGCN
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.10.0
+  - r-base=4.3.0
+  - r-optparse
+  - r-data.table
+  - bioconductor-gsva=1.50.0
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=11.8
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn=1.2.0
+  - scanpy=1.9.6
+  - rpy2
+  - python-louvain
+  - scikit-misc
