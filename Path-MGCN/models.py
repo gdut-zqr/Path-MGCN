@@ -72,15 +72,15 @@ class Path_MGCN(nn.Module):
         )
 
     def forward(self, x, fadj, padj1, padj2, sadj):
-        emb1 = self.FGCN(x, fadj)  # Feature_GCN
-        emb2 = self.PGCN(x, padj1)  # pathway_activity_GCN
-        emb3 = self.EGCN(x, padj2)  # pathway_expression_GCN
-        emb4 = self.SGCN(x, sadj)  # Spatial_GCN
+        emb1 = self.FGCN(x, fadj)
+        emb2 = self.PGCN(x, padj1)
+        emb3 = self.EGCN(x, padj2)
+        emb4 = self.SGCN(x, sadj)
 
-        com1 = self.CGCN(x, fadj)  # Co_GCN
-        com2 = self.CGCN(x, padj1)  # Co_GCN
-        com3 = self.CGCN(x, padj2)  # Co_GCN
-        com4 = self.CGCN(x, sadj)  # Co_GCN
+        com1 = self.CGCN(x, fadj)
+        com2 = self.CGCN(x, padj1)
+        com3 = self.CGCN(x, padj2)
+        com4 = self.CGCN(x, sadj)
 
         emb = torch.stack([emb2, (com2 + com4) / 2, emb4], dim=1)
         emb, att = self.att(emb)
@@ -88,19 +88,3 @@ class Path_MGCN(nn.Module):
 
         [pi, disp, mean] = self.ZINB(emb)
         return com2, com4, emb, pi, disp, mean
-
-    # def forward(self, x, padj, sadj):
-    #     emb2 = self.PGCN(x, padj)  # pathway_activity_GCN
-    #     emb4 = self.SGCN(x, sadj)  # Spatial_GCN
-    #
-    #     com2 = self.CGCN(x, padj)  # Co_GCN
-    #     com4 = self.CGCN(x, sadj)  # Co_GCN
-    #
-    #     # emb = torch.stack([emb2, (com2 + com3 + com4) / 3, emb4], dim=1)
-    #     emb = torch.stack([emb2, (com2 + com4) / 2, emb4], dim=1)
-    #     emb, att = self.att(emb)
-    #     emb = self.MLP(emb)
-    #
-    #     [pi, disp, mean] = self.ZINB(emb)
-    #     return com2, com4, emb, pi, disp, mean
-

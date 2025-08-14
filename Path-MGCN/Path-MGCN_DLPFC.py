@@ -1,17 +1,10 @@
 import warnings
 warnings.filterwarnings("ignore")
 
-import os
-import random
-import numpy as np
-import pandas as pd
 import scanpy as sc
-import torch
 from torch.optim import NAdam
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
-from sklearn import metrics
-from config import Config
 from utils import *
 from models import Path_MGCN
 

@@ -1,0 +1,25 @@
+name: Path-MGCN
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.10.0
+  - r-base=4.3.*
+  - r-optparse
+  - r-data.table
+  - bioconductor-gsva=1.50.0
+  - r-mclust
+  - pip
+  - rpy2
+  - pip:
+      - torch
+      - torchvision
+      - torchaudio
+      - numpy
+      - pandas
+      - scipy
+      - scikit-learn
+      - scanpy
+      - python-louvain
+      - scikit-misc

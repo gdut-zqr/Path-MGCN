@@ -6,9 +6,30 @@ Spatial transcriptomics (ST) comprehensively measure the gene expression profile
 ---
 
 ## Install
+
+We recommend running Path-MGCN on a **Linux** system. The `GSVA` package can leverage multi-core processing on Linux, which significantly speeds up the pathway activity score calculation. 🚀
+
+### For Linux (Recommended)
 ```bash
-conda install -f environment.yml
+cd Path-MGCN
+conda install -f environment_linux.yml
 ```
+
+### For Windows
+```bash
+cd Path-MGCN
+conda install -f environment_win.yml
+```
+
+---
+
+## Usage
+Example on **DLPFC**:
+```bash
+conda activate Path-MGCN
+python Path-MGCN_DLPFC.py
+```
+
 
 ---
 
@@ -24,17 +45,6 @@ The ST datasets and pathway databases are publicly available:
 7. **KEGG PATHWAY**: [https://www.kegg.jp/kegg/pathway.html](https://www.kegg.jp/kegg/pathway.html).
 8. **Gene Ontology (GO)**: [https://geneontology.org/docs/download-ontology](https://geneontology.org/docs/download-ontology).
 9. **Reactome Pathway**: [https://reactome.org/download-data](https://reactome.org/download-data).
-
-
----
-
-## Usage
-Example on **DLPFC**:
-Enter the `Path-MGCN` directory and run the DLPFC example:
-```bash
-cd Path-MGCN
-python Path-MGCN_DLPFC.py
-```
 
 ---
 

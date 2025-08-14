@@ -5,22 +5,10 @@ import subprocess
 import numpy as np
 import pandas as pd
 import scipy.sparse as sp
-from scipy.sparse import csr_matrix
 import sklearn
-from sklearn.cluster import KMeans
-from sklearn import metrics
-from sklearn.decomposition import PCA
 from sklearn.neighbors import kneighbors_graph
-from sklearn.metrics.pairwise import euclidean_distances
-import networkx as nx
-import community as community_louvain
 import torch
-import torch.optim as optim
-import matplotlib.pyplot as plt
 import scanpy as sc
-import h5py
-from config import Config
-from models import Path_MGCN
 
 def get_pathway_activity_with_r(adata, gmt_file, path, r_script="GSVA_scores.R", threads=80):
 
@@ -36,7 +24,7 @@ def get_pathway_activity_with_r(adata, gmt_file, path, r_script="GSVA_scores.R",
     )
     tf_expr = tempfile.NamedTemporaryFile(delete=False, suffix=".tsv")
     expr_df.to_csv(tf_expr.name, sep="\t")
-
+    tf_expr.close()
     tf_out = tempfile.NamedTemporaryFile(delete=False, suffix=".tsv")
     tf_out.close()
 
@@ -68,6 +56,8 @@ def prepare_data_in_memory(dataset, highly_genes, k, radius, gmt_file, path, thr
 
     labels_df = pd.read_table(os.path.join(path, "metadata.tsv"), sep='\t')
     labels_df.index = adata.obs.index
+    if dataset == 'HBC':
+        adata.obs['ground_truth'] = labels_df["ground_truth"]
     adata.obs['ground_truth'] = labels_df["layer_guess_reordered"]
     adata = adata[~adata.obs['ground_truth'].isnull()].copy()
 
