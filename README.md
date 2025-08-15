@@ -12,13 +12,13 @@ We recommend running Path-MGCN on a **Linux** system. The `GSVA` package can lev
 ### For Linux (Recommended)
 ```bash
 cd Path-MGCN
-conda install -f environment_linux.yml
+conda env create -f environment_linux.yml
 ```
 
 ### For Windows
 ```bash
 cd Path-MGCN
-conda install -f environment_win.yml
+conda env create -f environment_win.yml
 ```
 
 ---
